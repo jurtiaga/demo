@@ -1,0 +1,13 @@
+---
+- name: Install and configure Apache Server
+  hosts: node1
+  become: yes
+  tasks:
+    - name: install httpd package
+      yum:
+        name: httpd
+        state: latest
+    - name: configure httpd service
+      service:
+        name: httpd
+        state: started
