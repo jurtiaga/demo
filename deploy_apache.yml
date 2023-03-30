@@ -1,13 +1,13 @@
----
-- name: Install and configure Apache Server
-  hosts: node1
+- name: Install and start Apache Server
+  hosts: "{{ variable_host | default('node1') }}"
   become: yes
   tasks:
-    - name: install httpd package
+    - name: Install httpd package
       yum:
         name: httpd
         state: latest
-    - name: configure httpd service
+    - name: start httpd service
       service:
         name: httpd
         state: started
+        enabled: true
